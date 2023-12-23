@@ -27,4 +27,15 @@ public class DAOFactory {
         if(connexion == null) toConnect();
         return connexion;
     }
-}
+
+    public void closeConnection() {
+        try {
+            if (connexion != null) {
+                connexion.close();
+                System.out.println("Connection closed");
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+}                                                                                                                                                                                                                                                                    
