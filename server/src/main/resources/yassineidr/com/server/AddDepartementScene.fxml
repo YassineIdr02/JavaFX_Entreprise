@@ -7,20 +7,20 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="946.0" prefWidth="1111.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="yassineidr.com.server.SceneController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="946.0" prefWidth="1111.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="yassineidr.com.server.DepartementController">
    <children>
       <Text layoutX="43.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter un departement:" wrappingWidth="362.25439453125">
          <font>
             <Font size="30.0" />
          </font>
       </Text>
-      <TextField fx:id="NomEmp" layoutX="365.0" layoutY="199.0" prefHeight="47.0" prefWidth="277.0" />
+      <TextField fx:id="NomDept" layoutX="365.0" layoutY="199.0" prefHeight="47.0" prefWidth="277.0" />
       <Text layoutX="365.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom: " wrappingWidth="180.21630859375">
          <font>
             <Font size="23.0" />
          </font>
       </Text>
-      <Button layoutX="439.0" layoutY="266.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="130.0" text="Ajouter">
+      <Button layoutX="439.0" layoutY="266.0" mnemonicParsing="false" onAction="#AddDept" prefHeight="47.0" prefWidth="130.0" text="Ajouter">
          <font>
             <Font size="26.0" />
          </font>

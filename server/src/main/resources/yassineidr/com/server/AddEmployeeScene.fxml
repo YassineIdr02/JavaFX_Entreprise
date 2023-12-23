@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="922.0" prefWidth="1125.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="yassineidr.com.server.SceneController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="922.0" prefWidth="1125.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="yassineidr.com.server.EmployerController">
    <children>
       <Text layoutX="44.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter un employer:" wrappingWidth="267.0654296875">
          <font>
@@ -38,8 +38,8 @@
             <Font size="23.0" />
          </font>
       </Text>
-      <ChoiceBox fx:id="IdDept" layoutX="524.0" layoutY="462.0" prefWidth="150.0" />
-      <Button layoutX="426.0" layoutY="517.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="142.0" text="Ajouter">
+      <ChoiceBox fx:id="RefDept" layoutX="524.0" layoutY="462.0" prefWidth="150.0" />
+      <Button layoutX="426.0" layoutY="517.0" mnemonicParsing="false" onAction="#AddEmp" prefHeight="47.0" prefWidth="142.0" text="Ajouter">
          <font>
             <Font size="21.0" />
          </font>

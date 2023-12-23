@@ -14,7 +14,7 @@ public class DAODepartement {
     private Connection myConn = DAOFactory.getConnection();
 
     public boolean Create(Departement dept) {
-        String stmt = "INSERT INTO DEPARTEMEMT (NomDept) VALUES (?)";
+        String stmt = "INSERT INTO Departement (NomDept) VALUES (?)";
         PreparedStatement pstmt;
         try{
             pstmt = myConn.prepareStatement(stmt);
@@ -40,6 +40,22 @@ public class DAODepartement {
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()){
                 departements.add(new Departement(rs.getString(2), rs.getInt(1) ));
+            }
+        }catch (Exception ex){
+            System.out.println(ex.getMessage());
+        }
+        return departements;
+    }
+
+    public List<Integer> AllIds() {
+        List<Integer> departements = new ArrayList<Integer>();
+        String stmt = "SELECT IdDept FROM DEPARTEMENT";
+        PreparedStatement pstmt;
+        try{
+            pstmt = myConn.prepareStatement(stmt);
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()){
+                departements.add( rs.getInt(1) );
             }
         }catch (Exception ex){
             System.out.println(ex.getMessage());

@@ -13,7 +13,7 @@ public class DAOEmployer  {
     private final Connection myConn = DAOFactory.getConnection();
 
     public boolean Create(Employer emp) {
-        String stmt = "INSERT INTO EMPLOYER (NomEMP, SALAIRE, AGE, IDDEPT) VALUES (?, ?, ?, ?)";
+        String stmt = "INSERT INTO EMPLOYER (NomEMP, SALAIRE, AGE, REFDEPT) VALUES (?, ?, ?, ?)";
         PreparedStatement pstmt;
         try{
             pstmt = myConn.prepareStatement(stmt);
