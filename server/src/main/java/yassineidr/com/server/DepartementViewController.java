@@ -8,7 +8,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import yassineidr.com.server.JDBC.Classes.Departement;
@@ -18,31 +19,25 @@ import yassineidr.com.server.JDBC.DAOs.DAOEmployer;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import static javafx.collections.FXCollections.observableArrayList;
 
-public class EmployerController implements Initializable {
+public class DepartementViewController implements Initializable {
 
     @FXML
-    private TextField NomEmpTxt;
+    private TableColumn<Departement, Integer> IdDept;
     @FXML
-    private TextField SalaireTxt;
+    private TableColumn<Departement, String> NomDept;
+
     @FXML
-    private TextField AgeTxt;
+    private TableView<Departement> TableDept;
 
     private Stage stage;
     private Scene scene;
     private Parent root;
 
-    @FXML
-    private ChoiceBox<Integer> RefDeptTxt;
-
-
-
-    private ArrayList<Integer> listDept = new ArrayList<>();
+    private ObservableList<Departement> departementList;
 
     public void toAddEmp(ActionEvent e) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/yassineidr/com/server/AddEmployeeScene.fxml"));
@@ -74,29 +69,22 @@ public class EmployerController implements Initializable {
         stage.show();
     }
 
-    public void AddEmp(){
-        String nomEmploye = NomEmpTxt.getText();
-        float salaire = Float.parseFloat(SalaireTxt.getText());
-        int age = Integer.parseInt(AgeTxt.getText());
-        Integer referenceDept = RefDeptTxt.getValue();
-        Employer emp = Employer.builder()
-                .NomEmp(nomEmploye)
-                .Salaire(salaire)
-                .Age(age)
-                .RefDept(referenceDept)
-                .build();
-        DAOEmployer daoEmployer = new DAOEmployer();
-        daoEmployer.Create(emp);
-    }
+    private void populateTable() {
+        DAODepartement daoDepartement = new DAODepartement();
+        departementList = observableArrayList(daoDepartement.All());
 
+
+        // Set cell value factories for each column
+        IdDept.setCellValueFactory(new PropertyValueFactory<>("IdDept"));
+        NomDept.setCellValueFactory(new PropertyValueFactory<>("NomDept"));
+
+
+        TableDept.setItems(departementList);
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        DAODepartement daoDepartement = new DAODepartement();
-        listDept.addAll(daoDepartement.AllIds()) ;
-        RefDeptTxt.getItems().addAll(listDept);
-
-
+        populateTable();
     }
+
 }

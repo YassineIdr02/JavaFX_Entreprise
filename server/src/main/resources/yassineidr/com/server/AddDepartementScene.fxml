@@ -41,12 +41,12 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="681.0" layoutY="13.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="130.0" text="Liste Dept" textOverrun="CLIP">
+      <Button layoutX="681.0" layoutY="13.0" mnemonicParsing="false" prefHeight="48.0" onAction="#toDept" prefWidth="130.0" text="Liste Dept" textOverrun="CLIP">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="546.0" layoutY="13.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="130.0" text="Liste Emp" textOverrun="CLIP">
+      <Button layoutX="546.0" layoutY="13.0" mnemonicParsing="false" onAction="#toEmp" prefHeight="48.0" prefWidth="130.0" text="Liste Emp" textOverrun="CLIP">
          <font>
             <Font size="20.0" />
          </font>

@@ -43,12 +43,15 @@ public class DAOEmployer  {
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()){
                 employers.add(new Employer(rs.getInt(1), rs.getString(2), rs.getFloat(3), rs.getInt(4), rs.getInt(5) ));
+
             }
         }catch (Exception ex){
             System.out.println(ex.getMessage());
         }
         return employers;
-    } public List<Employer> EmpDept(Integer RefDept) {
+    }
+
+    public List<Employer> EmpDept(Integer RefDept) {
         List<Employer> employers = new ArrayList<Employer>();
         String stmt = "SELECT * FROM EMPLOYER WHERE REFDEPT = ?";
         PreparedStatement pstmt;

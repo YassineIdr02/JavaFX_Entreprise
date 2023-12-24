@@ -15,19 +15,19 @@
             <Font size="30.0" />
          </font>
       </Text>
-      <TextField fx:id="NomEmp" layoutX="358.0" layoutY="179.0" prefHeight="47.0" prefWidth="277.0" />
+      <TextField fx:id="NomEmpTxt" layoutX="358.0" layoutY="179.0" prefHeight="47.0" prefWidth="277.0" />
       <Text layoutX="358.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom: " wrappingWidth="180.21630859375">
          <font>
             <Font size="23.0" />
          </font>
       </Text>
-      <TextField fx:id="Age" layoutX="358.0" layoutY="284.0" prefHeight="47.0" prefWidth="277.0" />
+      <TextField fx:id="AgeTxt" layoutX="358.0" layoutY="284.0" prefHeight="47.0" prefWidth="277.0" />
       <Text layoutX="358.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Age:" wrappingWidth="180.21630859375">
          <font>
             <Font size="23.0" />
          </font>
       </Text>
-      <TextField fx:id="Salaire" layoutX="358.0" layoutY="393.0" prefHeight="47.0" prefWidth="277.0" />
+      <TextField fx:id="SalaireTxt" layoutX="358.0" layoutY="393.0" prefHeight="47.0" prefWidth="277.0" />
       <Text layoutX="358.0" layoutY="378.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Salaire:" wrappingWidth="180.21630859375">
          <font>
             <Font size="23.0" />
@@ -38,7 +38,7 @@
             <Font size="23.0" />
          </font>
       </Text>
-      <ChoiceBox fx:id="RefDept" layoutX="524.0" layoutY="462.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="RefDeptTxt" layoutX="524.0" layoutY="462.0" prefWidth="150.0" />
       <Button layoutX="426.0" layoutY="517.0" mnemonicParsing="false" onAction="#AddEmp" prefHeight="47.0" prefWidth="142.0" text="Ajouter">
          <font>
             <Font size="21.0" />
@@ -60,12 +60,12 @@
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="710.0" layoutY="13.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="130.0" text="Liste Dept" textOverrun="CLIP">
+      <Button layoutX="710.0" layoutY="13.0" mnemonicParsing="false" prefHeight="48.0" onAction="#toDept" prefWidth="130.0" text="Liste Dept" textOverrun="CLIP">
          <font>
             <Font size="20.0" />
          </font>
       </Button>
-      <Button layoutX="575.0" layoutY="13.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="130.0" text="Liste Emp" textOverrun="CLIP">
+      <Button layoutX="575.0" layoutY="13.0" mnemonicParsing="false" onAction="#toEmp" prefHeight="48.0" prefWidth="130.0" text="Liste Emp" textOverrun="CLIP">
          <font>
             <Font size="20.0" />
          </font>
