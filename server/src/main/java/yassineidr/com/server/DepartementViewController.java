@@ -57,7 +57,7 @@ public class DepartementViewController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-    public void toEmp(ActionEvent e) throws IOException {
+    public  void toEmp(ActionEvent e) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/yassineidr/com/server/EmployerView.fxml"));
         stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -89,5 +89,46 @@ public class DepartementViewController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         populateTable();
     }
+
+    public void deleteDept() {
+        Departement selectedDepartement = TableDept.getSelectionModel().getSelectedItem();
+
+        if (selectedDepartement != null) {
+            DAODepartement daoDepartement = new DAODepartement();
+
+            boolean deleted = daoDepartement.Delete(selectedDepartement.getIdDept());
+
+            if (deleted) {
+                departementList.remove(selectedDepartement);
+            } else {
+                System.out.println("Failed to delete the departement.");
+            }
+        } else {
+            System.out.println("Please select a departement to delete.");
+        }
+    }
+
+    public void updateDept() {
+        Departement selectedDepartement = TableDept.getSelectionModel().getSelectedItem();
+
+        if (selectedDepartement != null) {
+            int departementId = selectedDepartement.getIdDept();
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/yassineidr/com/server/UpdateDepartement.fxml"));
+                Parent root = loader.load();
+                DepartementController updateController = loader.getController();
+                updateController.setDepartementId(departementId);
+                Stage stage = (Stage) ((Node) TableDept).getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Please select an employer to update.");
+        }
+    }
+
 
 }

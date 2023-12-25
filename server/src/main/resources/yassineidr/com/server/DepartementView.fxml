@@ -43,5 +43,7 @@
             <TableColumn fx:id="NbrEmp" prefWidth="197.0" text="NbEmp" />
          </columns>
       </TableView>
+      <Button layoutX="459.0" layoutY="600.0" mnemonicParsing="false" onAction="#updateDept" prefHeight="48.0" prefWidth="84.0" text="Edit" />
+      <Button layoutX="655.0" layoutY="600.0" mnemonicParsing="false" onAction="#deleteDept" prefHeight="48.0" prefWidth="95.0" text="Delete" />
    </children>
 </AnchorPane>

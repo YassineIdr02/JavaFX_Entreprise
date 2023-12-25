@@ -89,8 +89,8 @@ public class DAODepartement {
         String query = "UPDATE DEPARTEMENT SET NOMDEPT = ? where IDDEPT = ?" ;
         try {
             PreparedStatement pst = myConn.prepareStatement(query);
-            pst.setInt(1, departement.getIdDept());
-            pst.setString(2, departement.getNomDept());
+            pst.setInt(2, Id);
+            pst.setString(1, departement.getNomDept());
             pst.executeUpdate();
             return true ;
         }

@@ -25,6 +25,12 @@ public class DepartementController {
     @FXML
     private TextField NomDept;
 
+    private int departementId; // Field to store the received employer ID
+
+    public void setDepartementId(int departementId) {
+        this.departementId = departementId; // Set the employer ID received from EmployerViewController
+    }
+
     public void toAddEmp(ActionEvent e) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/yassineidr/com/server/AddEmployeeScene.fxml"));
         stage = (Stage)((Node)e.getSource()).getScene().getWindow();
@@ -62,6 +68,23 @@ public class DepartementController {
                 .build();
         DAODepartement daoDepartement = new DAODepartement();
         daoDepartement.Create(dept);
+    }
+    public void UpDept(ActionEvent e){
+        try {
+            String nomDepartement = NomDept.getText();
+            Departement dept = Departement.builder()
+                    .IdDept(departementId)
+                    .NomDept(nomDepartement)
+                    .build();
+            DAODepartement daoDepartement = new DAODepartement();
+            daoDepartement.Update(dept,departementId);
+            DepartementViewController dc = new DepartementViewController();
+            toDept(e);
+
+        }catch (Exception ex){
+            System.out.println(ex.getMessage());
+        }
+
     }
 
 
