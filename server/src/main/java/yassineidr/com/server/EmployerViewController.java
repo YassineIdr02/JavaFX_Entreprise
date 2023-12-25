@@ -91,9 +91,35 @@ public class EmployerViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         populateTable();
+    }
 
+    public void deleteEmp() {
+        // Get the selected employer from the table
+        Employer selectedEmployer = TableEmp.getSelectionModel().getSelectedItem();
 
+        if (selectedEmployer != null) {
+            // Access the DAOEmployer instance
+            DAOEmployer daoEmployer = new DAOEmployer();
 
+            // Delete the selected employer using its ID (assuming getIdEmp() returns the ID)
+            boolean deleted = daoEmployer.Delete(selectedEmployer.getIdEmp());
+
+            if (deleted) {
+                // If deletion is successful, remove the employer from the table's data source
+                employerList.remove(selectedEmployer);
+            } else {
+                // Handle failure scenario (e.g., display an error message)
+                // You can use dialogs or other UI components to notify the user about the failure.
+                System.out.println("Failed to delete the employer.");
+            }
+        } else {
+            // Handle the case when no employer is selected for deletion
+            // Display a message to the user or perform any necessary action.
+            System.out.println("Please select an employer to delete.");
+        }
+    }
+
+    public void updateEmp(){
 
     }
 

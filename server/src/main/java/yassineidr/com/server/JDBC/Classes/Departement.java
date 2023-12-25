@@ -9,10 +9,12 @@ import lombok.Data;
 public class Departement {
     private String NomDept;
     private Integer IdDept;
+    private Integer NbrEmp;
 
-    public Departement(String name, Integer id) {
+    public Departement(String name, Integer id, Integer nbrEmp) {
         this.NomDept = name;
         this.IdDept = id;
+        this.NbrEmp = nbrEmp;
     }
 }
 

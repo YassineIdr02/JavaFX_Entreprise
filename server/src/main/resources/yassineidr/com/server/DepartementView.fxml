@@ -8,7 +8,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="740.0" prefWidth="1114.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="yassineidr.com.server.DepartementViewController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#cbd1d7" height="75.0" layoutX="-4.0" stroke="BLACK" strokeType="INSIDE" width="1166.0" />
@@ -41,7 +40,7 @@
          <columns>
             <TableColumn fx:id="IdDept" prefWidth="205.0" text="IdDept" />
             <TableColumn fx:id="NomDept" minWidth="3.0" prefWidth="193.0" text="NomDept" />
-            <TableColumn prefWidth="197.0" text="NbEmp" />
+            <TableColumn fx:id="NbrEmp" prefWidth="197.0" text="NbEmp" />
          </columns>
       </TableView>
    </children>

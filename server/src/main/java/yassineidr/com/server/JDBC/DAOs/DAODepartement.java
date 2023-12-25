@@ -14,7 +14,7 @@ public class DAODepartement {
     private Connection myConn = DAOFactory.getConnection();
 
     public boolean Create(Departement dept) {
-        String stmt = "INSERT INTO Departement (NomDept) VALUES (?)";
+        String stmt = "INSERT INTO Departement (NomDept, NbrEmp) VALUES (?, 0)";
         PreparedStatement pstmt;
         try{
             pstmt = myConn.prepareStatement(stmt);
@@ -39,7 +39,7 @@ public class DAODepartement {
             pstmt = myConn.prepareStatement(stmt);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()){
-                departements.add(new Departement(rs.getString(2), rs.getInt(1) ));
+                departements.add(new Departement(rs.getString(2), rs.getInt(1), rs.getInt(3) ));
             }
         }catch (Exception ex){
             System.out.println(ex.getMessage());

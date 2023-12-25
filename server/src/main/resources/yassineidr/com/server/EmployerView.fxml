@@ -46,5 +46,7 @@
             <Font size="20.0" />
          </font>
       </Button>
+      <Button layoutX="452.0" layoutY="718.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="84.0" text="Edit" />
+      <Button layoutX="648.0" layoutY="718.0" mnemonicParsing="false" onAction="#deleteEmp" prefHeight="48.0" prefWidth="95.0" text="Delete" />
    </children>
 </AnchorPane>

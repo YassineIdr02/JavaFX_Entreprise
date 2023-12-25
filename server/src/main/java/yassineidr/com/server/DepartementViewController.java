@@ -31,6 +31,9 @@ public class DepartementViewController implements Initializable {
     private TableColumn<Departement, String> NomDept;
 
     @FXML
+    private TableColumn<Departement, Integer> NbrEmp;
+
+    @FXML
     private TableView<Departement> TableDept;
 
     private Stage stage;
@@ -77,7 +80,7 @@ public class DepartementViewController implements Initializable {
         // Set cell value factories for each column
         IdDept.setCellValueFactory(new PropertyValueFactory<>("IdDept"));
         NomDept.setCellValueFactory(new PropertyValueFactory<>("NomDept"));
-
+        NbrEmp.setCellValueFactory(new PropertyValueFactory<>("NbrEmp"));
 
         TableDept.setItems(departementList);
     }
