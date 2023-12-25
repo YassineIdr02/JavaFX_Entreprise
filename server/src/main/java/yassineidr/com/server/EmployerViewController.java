@@ -119,8 +119,34 @@ public class EmployerViewController implements Initializable {
         }
     }
 
-    public void updateEmp(){
+    public void updateEmp() {
+        Employer selectedEmployer = TableEmp.getSelectionModel().getSelectedItem();
 
+        if (selectedEmployer != null) {
+            int employerId = selectedEmployer.getIdEmp(); // Get the ID of the selected employer
+
+            try {
+                // Load the FXML file for the update form
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/yassineidr/com/server/UpdateEmployer.fxml"));
+                Parent root = loader.load();
+
+                // Access the controller of the update form
+                EmployerController updateController = loader.getController();
+
+                // Pass the employer ID to the controller of the update form
+                updateController.setEmployerId(employerId);
+
+                // Show the new scene for updating the employer
+                Stage stage = (Stage) ((Node) TableEmp).getScene().getWindow();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Please select an employer to update.");
+        }
     }
 
 

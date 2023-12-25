@@ -40,7 +40,11 @@ public class EmployerController implements Initializable {
     @FXML
     private ChoiceBox<Integer> RefDeptTxt;
 
+    private int employerId; // Field to store the received employer ID
 
+    public void setEmployerId(int employerId) {
+        this.employerId = employerId; // Set the employer ID received from EmployerViewController
+    }
 
     private ArrayList<Integer> listDept = new ArrayList<>();
 
@@ -87,6 +91,31 @@ public class EmployerController implements Initializable {
                 .build();
         DAOEmployer daoEmployer = new DAOEmployer();
         daoEmployer.Create(emp);
+    }
+
+    public void UpEmp(ActionEvent e){
+        try{
+            EmployerController ec = new EmployerController();
+            String nomEmploye = NomEmpTxt.getText();
+            float salaire = Float.parseFloat(SalaireTxt.getText());
+            int age = Integer.parseInt(AgeTxt.getText());
+            Integer referenceDept = RefDeptTxt.getValue();
+            Employer emp = Employer.builder()
+                    .IdEmp(employerId)
+                    .NomEmp(nomEmploye)
+                    .Salaire(salaire)
+                    .Age(age)
+                    .RefDept(referenceDept)
+                    .build();
+            DAOEmployer daoEmployer = new DAOEmployer();
+            daoEmployer.Update(emp,employerId);
+            ec.toEmp(e);
+        }
+        catch (Exception ex){
+            System.out.println(ex.getMessage());
+
+        }
+
     }
 
 

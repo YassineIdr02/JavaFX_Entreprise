@@ -100,7 +100,7 @@ public class DAOEmployer  {
             pst.setFloat(2, employer.getSalaire());
             pst.setInt(3, employer.getAge());
             pst.setInt(4, employer.getRefDept());
-            pst.setInt(2, employer.getIdEmp());
+            pst.setInt(5, Id);
             pst.executeUpdate();
             return true ;
         }
