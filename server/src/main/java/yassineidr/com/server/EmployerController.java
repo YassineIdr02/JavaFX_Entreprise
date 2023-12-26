@@ -118,6 +118,7 @@ public class EmployerController implements Initializable {
                     .Age(age)
                     .RefDept(referenceDept)
                     .build();
+            
             DAOEmployer daoEmployer = new DAOEmployer();
             daoEmployer.Update(emp,employerId);
             ec.toEmp(e);
