@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -38,6 +39,11 @@ public class EmployerViewController implements Initializable {
     private TableColumn<Employer, Integer> RefDept;
 
     private ObservableList<Employer> employerList;
+    private Integer departementId = -1;
+
+    public void setDepartementId(Integer id){
+        departementId = id;
+    }
 
 
     private Stage stage;
@@ -75,15 +81,20 @@ public class EmployerViewController implements Initializable {
     }
     private void populateTable() {
         DAOEmployer daoEmployer = new DAOEmployer();
-        employerList = observableArrayList(daoEmployer.All());
-
-
-        // Set cell value factories for each column
         IdEmp.setCellValueFactory(new PropertyValueFactory<>("IdEmp"));
         NomEmp.setCellValueFactory(new PropertyValueFactory<>("NomEmp"));
         Age.setCellValueFactory(new PropertyValueFactory<>("Age"));
         Salaire.setCellValueFactory(new PropertyValueFactory<>("Salaire"));
-        RefDept.setCellValueFactory(new PropertyValueFactory<>("RefDept"));
+        RefDept.setVisible(false);
+        if (departementId == -1) {
+            RefDept.setVisible(true);
+            employerList = observableArrayList(daoEmployer.All());
+            RefDept.setCellValueFactory(new PropertyValueFactory<>("RefDept"));
+        } else {
+            RefDept.setVisible(false);
+            employerList = observableArrayList(daoEmployer.EmpDept(departementId));
+            // Hide RefDept column
+        }
 
         TableEmp.setItems(employerList);
     }
@@ -98,18 +109,18 @@ public class EmployerViewController implements Initializable {
         Employer selectedEmployer = TableEmp.getSelectionModel().getSelectedItem();
 
         if (selectedEmployer != null) {
-            // Access the DAOEmployer instance
             DAOEmployer daoEmployer = new DAOEmployer();
 
-            // Delete the selected employer using its ID (assuming getIdEmp() returns the ID)
             boolean deleted = daoEmployer.Delete(selectedEmployer.getIdEmp());
 
             if (deleted) {
-                // If deletion is successful, remove the employer from the table's data source
                 employerList.remove(selectedEmployer);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setHeaderText(null);
+                alert.setContentText("Employer deleted with success");
+                alert.showAndWait();
             } else {
-                // Handle failure scenario (e.g., display an error message)
-                // You can use dialogs or other UI components to notify the user about the failure.
                 System.out.println("Failed to delete the employer.");
             }
         } else {

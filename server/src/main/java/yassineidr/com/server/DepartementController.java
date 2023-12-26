@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import yassineidr.com.server.JDBC.Classes.Departement;
@@ -60,14 +61,25 @@ public class DepartementController {
         stage.setScene(scene);
         stage.show();
     }
-    public void AddDept(){
+    public void AddDept(ActionEvent e){
+        try{
+            DepartementViewController dc = new DepartementViewController();
+            String nomDepartement = NomDept.getText();
+            Departement dept = Departement.builder()
+                    .NomDept(nomDepartement)
+                    .build();
+            DAODepartement daoDepartement = new DAODepartement();
+            daoDepartement.Create(dept);
+            toDept(e);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setHeaderText(null);
+            alert.setContentText("Departement added with success");
+            alert.showAndWait();
+        }catch (Exception ex){
+            System.out.println(ex.getMessage());
+        }
 
-        String nomDepartement = NomDept.getText();
-        Departement dept = Departement.builder()
-                .NomDept(nomDepartement)
-                .build();
-        DAODepartement daoDepartement = new DAODepartement();
-        daoDepartement.Create(dept);
     }
     public void UpDept(ActionEvent e){
         try {
@@ -80,7 +92,11 @@ public class DepartementController {
             daoDepartement.Update(dept,departementId);
             DepartementViewController dc = new DepartementViewController();
             toDept(e);
-
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setHeaderText(null);
+            alert.setContentText("Departement updated with success");
+            alert.showAndWait();
         }catch (Exception ex){
             System.out.println(ex.getMessage());
         }

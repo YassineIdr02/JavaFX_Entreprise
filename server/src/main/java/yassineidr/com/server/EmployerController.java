@@ -78,19 +78,30 @@ public class EmployerController implements Initializable {
         stage.show();
     }
 
-    public void AddEmp(){
-        String nomEmploye = NomEmpTxt.getText();
-        float salaire = Float.parseFloat(SalaireTxt.getText());
-        int age = Integer.parseInt(AgeTxt.getText());
-        Integer referenceDept = RefDeptTxt.getValue();
-        Employer emp = Employer.builder()
-                .NomEmp(nomEmploye)
-                .Salaire(salaire)
-                .Age(age)
-                .RefDept(referenceDept)
-                .build();
-        DAOEmployer daoEmployer = new DAOEmployer();
-        daoEmployer.Create(emp);
+    public void AddEmp(ActionEvent e){
+        try{
+            String nomEmploye = NomEmpTxt.getText();
+            float salaire = Float.parseFloat(SalaireTxt.getText());
+            int age = Integer.parseInt(AgeTxt.getText());
+            Integer referenceDept = RefDeptTxt.getValue();
+            Employer emp = Employer.builder()
+                    .NomEmp(nomEmploye)
+                    .Salaire(salaire)
+                    .Age(age)
+                    .RefDept(referenceDept)
+                    .build();
+            DAOEmployer daoEmployer = new DAOEmployer();
+            daoEmployer.Create(emp);
+            toEmp(e);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setHeaderText(null);
+            alert.setContentText("Employer added with success");
+            alert.showAndWait();
+        }catch (Exception ex){
+            System.out.println(ex.getMessage());
+        }
+
     }
 
     public void UpEmp(ActionEvent e){
@@ -110,6 +121,11 @@ public class EmployerController implements Initializable {
             DAOEmployer daoEmployer = new DAOEmployer();
             daoEmployer.Update(emp,employerId);
             ec.toEmp(e);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setHeaderText(null);
+            alert.setContentText("Employer updated with success");
+            alert.showAndWait();
         }
         catch (Exception ex){
             System.out.println(ex.getMessage());

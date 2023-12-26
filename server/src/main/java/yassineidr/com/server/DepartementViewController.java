@@ -8,14 +8,16 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import yassineidr.com.server.JDBC.Classes.Departement;
 import yassineidr.com.server.JDBC.Classes.Employer;
 import yassineidr.com.server.JDBC.DAOs.DAODepartement;
 import yassineidr.com.server.JDBC.DAOs.DAOEmployer;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.control.TableRow;
 
 import java.io.IOException;
 import java.net.URL;
@@ -88,6 +90,30 @@ public class DepartementViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         populateTable();
+
+        TableDept.setRowFactory(tv -> {
+            TableRow<Departement> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && !row.isEmpty()) {
+                    Departement selectedDepartement = row.getItem();
+                    int departmentId = selectedDepartement.getIdDept();
+                    System.out.println(departmentId);
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/yassineidr/com/server/DepartementList.fxml"));
+                        Parent root = loader.load();
+                        EmployerViewController employerController = loader.getController();
+                        employerController.setDepartementId(departmentId);
+                        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        Scene scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            return row;
+        });
     }
 
     public void deleteDept() {
@@ -100,6 +126,11 @@ public class DepartementViewController implements Initializable {
 
             if (deleted) {
                 departementList.remove(selectedDepartement);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setHeaderText(null);
+                alert.setContentText("Departement deleted with success");
+                alert.showAndWait();
             } else {
                 System.out.println("Failed to delete the departement.");
             }
@@ -129,6 +160,8 @@ public class DepartementViewController implements Initializable {
             System.out.println("Please select an employer to update.");
         }
     }
+
+
 
 
 }
